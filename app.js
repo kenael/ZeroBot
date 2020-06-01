@@ -3,15 +3,15 @@ var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var exec = require('child_process').exec, child;
 var port = process.env.PORT || 3000;
-var ads1x15 = require('node-ads1x15');
-var adc = new ads1x15(1); // set to 0 for ads1015
+// var ads1x15 = require('node-ads1x15');
+// var adc = new ads1x15(1); // set to 0 for ads1015
 
 var Gpio = require('pigpio').Gpio,
-  A1 = new Gpio(27, {mode: Gpio.OUTPUT}),
-  A2 = new Gpio(17, {mode: Gpio.OUTPUT}),
-  B1 = new Gpio( 4, {mode: Gpio.OUTPUT}),
-  B2 = new Gpio(18, {mode: Gpio.OUTPUT});
-  LED = new Gpio(22, {mode: Gpio.OUTPUT});
+  A1 = new Gpio(26, {mode: Gpio.OUTPUT}),
+  A2 = new Gpio(19, {mode: Gpio.OUTPUT}),
+  B1 = new Gpio(13, {mode: Gpio.OUTPUT}),
+  B2 = new Gpio(6, {mode: Gpio.OUTPUT});
+  //LED = new Gpio(22, {mode: Gpio.OUTPUT});
 
 app.get('/', function(req, res){
   res.sendfile('Touch.html');
@@ -51,7 +51,7 @@ io.on('connection', function(socket){
   });
   
   socket.on('light', function(toggle) {
-    LED.digitalWrite(toggle);    
+    //LED.digitalWrite(toggle);    
   });  
   
   socket.on('cam', function(toggle) {
@@ -89,15 +89,15 @@ io.on('connection', function(socket){
          console.log('temp', temp);
       }
     });
-    if(!adc.busy){
-      adc.readADCSingleEnded(0, '4096', '250', function(err, data){ //channel, gain, samples
-        if(!err){          
-          voltage = 2*parseFloat(data)/1000;
-          console.log("ADC: ", voltage);
-          io.emit('volt', voltage);
-        }
-      });
-    }
+//    if(!adc.busy){
+//      adc.readADCSingleEnded(0, '4096', '250', function(err, data){ //channel, gain, samples
+//        if(!err){          
+//          voltage = 2*parseFloat(data)/1000;
+//          console.log("ADC: ", voltage);
+//          io.emit('volt', voltage);
+//        }
+//      });
+//    }
   }, 5000);
 
 });

@@ -1,0 +1,27 @@
+{
+  "name": "zerobot",
+  "version": "1.0.0",
+  "description": "Raspberry Pi Zero FPV Robot",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kenael/ZeroBot.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kenael/ZeroBot/issues"
+  },
+  "homepage": "https://github.com/kenael/ZeroBot#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "http": "0.0.1-security",
+    "pi-gpio": "0.0.8",
+    "pigpio": "^3.2.3",
+    "socket.io": "^2.3.0",
+    "ws": "^7.3.0"
+  }
+}
